@@ -10,6 +10,10 @@ const app = express();
 
 connectDB();
 
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   credentials: true,
+// }));
 app.use(cors({
   origin: 'https://taskflow-git-main-abdinoorahmeds-projects.vercel.app',
   credentials: true,
