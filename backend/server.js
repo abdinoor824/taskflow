@@ -11,7 +11,7 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://taskflow-git-main-abdinoorahmeds-projects.vercel.app',
   credentials: true,
 }));
 app.use(express.json());
