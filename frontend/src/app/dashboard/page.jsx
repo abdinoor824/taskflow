@@ -131,12 +131,12 @@ export default function DashboardPage() {
                   </p>
                 </div>
 
-                <button
-                  onClick={() => handleDelete(task._id)}
-                  className="text-xs font-semibold text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition"
-                >
-                  Delete
-                </button>
+              <button
+  onClick={() => handleDelete(task._id)}
+  className="text-xs font-semibold text-gray-400 hover:text-red-500 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition"
+>
+  Delete
+</button>
               </li>
             ))}
           </ul>
