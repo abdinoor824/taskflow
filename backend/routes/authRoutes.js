@@ -16,7 +16,12 @@ router.post('/register', async (req, res) => {
   const user = await User.create({ name, email, password });
   const token = generateToken(user._id);
 
-  res.cookie('token', token, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
+  res.cookie('token', token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
   res.status(201).json({ id: user._id, name: user.name, email: user.email });
 });
 
@@ -29,13 +34,23 @@ router.post('/login', async (req, res) => {
   }
 
   const token = generateToken(user._id);
-  res.cookie('token', token, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
   res.json({ id: user._id, name: user.name, email: user.email });
 });
 
 
+
 router.post('/logout', (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  });
   res.json({ message: 'Logged out' });
 });
 
