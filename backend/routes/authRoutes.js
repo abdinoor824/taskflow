@@ -26,12 +26,32 @@ router.post('/register', async (req, res) => {
 });
 
 
+// router.post('/login', async (req, res) => {
+//   const { email, password } = req.body;
+//   const user = await User.findOne({ email });
+//   if (!user || !(await user.matchPassword(password))) {
+//     return res.status(401).json({ message: 'Invalid credentials' });
+//   }
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (!user || !(await user.matchPassword(password))) {
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found, please register' });
+  }
+  if (!(await user.matchPassword(password))) {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
+
+  const token = generateToken(user._id);
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+  res.json({ id: user._id, name: user.name, email: user.email });
+});
 
   const token = generateToken(user._id);
 res.cookie('token', token, {

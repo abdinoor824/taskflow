@@ -15,7 +15,7 @@ export default function RegisterPage() {
     setError('');
     try {
       await apiFetch('/auth/register', { method: 'POST', body: JSON.stringify(form) });
-      router.push('/');
+      router.push('/dashboard');
     } catch (err) {
       setError(err.message);
     }

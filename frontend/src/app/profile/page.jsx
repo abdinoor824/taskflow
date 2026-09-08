@@ -27,7 +27,7 @@ export default function ProfilePage() {
     setError('');
     try {
       await apiFetch('/auth/profile', { method: 'PUT', body: JSON.stringify(form) });
-      router.push('/');
+      router.push('/dashboard');
     } catch (err) {
       setError(err.message);
     }
@@ -37,7 +37,7 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-[#EDEBE6]">
       <nav className="flex justify-between items-center px-6 py-4 bg-[#FAF9F6] border-b border-gray-200">
         <span className="font-bold text-gray-900">TaskFlow</span>
-        <a href="/" className="text-xs text-gray-500 hover:text-gray-800">Back to Tasks</a>
+        <a href="/dashboard" className="text-xs text-gray-500 hover:text-gray-800">Back to Tasks</a>
       </nav>
 
       <div className="flex items-center justify-center py-10 px-4">

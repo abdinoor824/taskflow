@@ -15,7 +15,7 @@ export default function LoginPage() {
     setError('');
     try {
       await apiFetch('/auth/login', { method: 'POST', body: JSON.stringify(form) });
-      router.push('/');
+      router.push('/dashboard');
     } catch (err) {
       setError(err.message);
     }
